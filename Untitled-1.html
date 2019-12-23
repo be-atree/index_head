@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="author" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="MobileOptimized" content="" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>编辑自动回复</title>
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/base.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/style.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/main.css" />
+    <script src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/js/scale.js"></script>
+
+
+</head>
+<style type="text/css">
+
+</style>
+<body style="background-color: #fff;">
+<div class="g-body" >
+<style>
+    body, div, p, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, a, input, button, textarea, table, th, tr, td {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .msg-box {
+        width: 100%;
+        height: 80px;
+        border-bottom: 1px solid #E2E2E2;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        margin-top: .35rem;
+        padding-right: .24rem;
+    }
+    .msg-item {
+        width: 100%;
+        height: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        justify-content: space-between;
+    }
+    .msg-item-tit {
+        width: 180px;
+        white-space: nowrap;
+        font-size:28px;
+        color: #2B2B2B;
+    }
+    .input-right {
+        height: 100%;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        align-items: center;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -moz-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+    }.input-right input {
+         -webkit-box-flex: 1;
+         -webkit-flex: 1;
+         -moz-box-flex: 1;
+         -ms-flex: 1;
+         flex: 1;
+         height: 100%;
+         text-align: right;
+         font-size: 28px;
+         outline: none;
+     }
+    .vueBox{width: 750px;}
+</style>
+<body >
+<section class="g-body">
+<div class="vueBox">
+    <div class="msg-box">
+        <div class="msg-item">
+            <span class="msg-item-tit">收款银行</span>
+            <div class="input-right" @click="showBankName">
+                <input type="text" :value="bank_name" readonly="" placeholder="请选择收款银行">
+                <div class="down_arrow"></div>
+            </div>
+        </div>
+    </div>
+    <div class="msg-box">
+        <div class="msg-item">
+            <span class="msg-item-tit">收款银行支行</span>
+            <div class="input-right">
+                <input type="text" placeholder="请输入收款银行支行">
+            </div>
+        </div>
+    </div>
+    <div class="msg-box">
+        <div class="msg-item">
+            <span class="msg-item-tit">银行卡</span>
+            <div class="input-right">
+                <input type="number" placeholder="请输入银行卡号">
+            </div>
+        </div>
+    </div>
+    <div class="msg-box">
+        <div class="msg-item">
+            <span class="msg-item-tit">收款户名</span>
+            <div class="input-right">
+                <input type="text" placeholder="请输入收款户名">
+            </div>
+        </div>
+    </div>
+    <div class="msg-box">
+        <div class="msg-item">
+            <span class="msg-item-tit">收款地区</span>
+            <div class="input-right" @click="showCitys">
+                <input type="text"  :value="city_name" readonly="" placeholder="请选择收款地区">
+                <div class="down_arrow"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div-btn">
+        <div class="btn-submit">提交</div>
+    </div>
+
+    <mt-popup v-model="bankVisible" position="bottom">
+        <ul class="mint-popup-head">
+            <li @click="selectBank(0)">取消</li>
+            <li @click="selectBank(1)">确认</li>
+        </ul>
+        <mt-picker :slots="banks_list" @change="bankChange" value-key="name"> </mt-picker>
+    </mt-popup>
+
+    <mt-popup v-model="cityVisible" position="bottom">
+        <ul class="mint-popup-head">
+            <li @click="selectCity(0)">取消</li>
+            <li @click="selectCity(1)">确认</li>
+        </ul>
+        <mt-picker :slots="citys_list" @change="cityChange" value-key="name"> </mt-picker>
+    </mt-popup>
+
+</div>
+
+<script src="js/resize.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="author" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="MobileOptimized" content=""/>
+    <meta name="format-detection" content="telephone=no" />
+    <title>我的团队</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/scale.js"></script><link rel="stylesheet" href="css/main.css" />
+</head>
+<style type="text/css">
+  
+</style>
+<body>
+<section class="g-body">
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="upload/01.jpg"></div>
+            <div class="swiper-slide"><img src="upload/02.jpg"></div>
+            <div class="swiper-slide"><img src="upload/03.jpg"></div>
+        
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+
+    <script src="js/swiper.jquery.min.js"></script><script src="js/TweenMax.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            keyboard : true,
+            virtualTranslate : true,
+            on:{
+                setTranslate: function(){
+                    this.$wrapperEl.transition('')
+                    TweenMax.to(this.$wrapperEl, 1.5, {x:this.translate, ease:Power4.easeOut})
+
+                }
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
+            },
+        });
+    </script>
+    <div class="zhuyebi1">
+        <div class="chanpin_title" >唐小腰代理产品A</div>
+        <div class="chanpin_rmb">￥128.00</div>
+<div class="chanpin_text">
+    <p style="text-indent: 2em;">唐小腰(大连)生物科技有限公司是2018-01-29在辽宁省大连市注册成立的有限责任公司(自然人投资或控股)，注册地址位于辽宁省大连高新技术产业园区火炬路1号海外学子创业园A座1层102-3房间。</p>
+
+    <p style="text-indent: 2em;">唐小腰(大连)生物科技有限公司的统一社会信用代码/注册号是91210231MA0UX9906C，企业法人于有卓，目前企业处于开业状态。</p>
+    
+    <p style="text-indent: 2em;">唐小腰(大连)生物科技有限公司的经营范围是：生物产品的技术开发、技术咨询、技术转让、技术服务；计算机软件开发、销售；农产品收购；食品研发及相关技术服务；预包装食品批发兼零售；国内一般贸易；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动。）。本省范围内，当前企业的注册资本属于一般。</p style="text-indent: 2em;">
+    
+    <p style="text-indent: 2em;">通过百度企业信用查看唐小腰(大连)生物科技有限公司更多信息和资讯。</p>
+    <p style="text-indent: 2em;">唐小腰(大连)生物科技有限公司是2018-01-29在辽宁省大连市注册成立的有限责任公司(自然人投资或控股)，注册地址位于辽宁省大连高新技术产业园区火炬路1号海外学子创业园A座1层102-3房间。</p style="text-indent: 2em;">
+
+    <p style="text-indent: 2em;">唐小腰(大连)生物科技有限公司的统一社会信用代码/注册号是91210231MA0UX9906C，企业法人于有卓，目前企业处于开业状态。</p>
+    
+    <p style="text-indent: 2em;">唐小腰(大连)生物科技有限公司的经营范围是：生物产品的技术开发、技术咨询、技术转让、技术服务；计算机软件开发、销售；农产品收购；食品研发及相关技术服务；预包装食品批发兼零售；国内一般贸易；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动。）。本省范围内，当前企业的注册资本属于一般。</p style="text-indent: 2em;">
+    
+    <p style="text-indent: 2em;">通过百度企业信用查看唐小腰(大连)生物科技有限公司更多信息和资讯。</p>
+ 
+</div>
+
+    </div>
+
+
+</section>
+
+<div class="backTop1 sprite_xg btnMenu"  style="bottom: 110px;"></div>
+
+<div class="footer">
+    <ul style="margin-top: 9px">
+        <li class="on">
+            <a href="index.html">
+                <img src="images/home.png">
+                <p>首页</p>
+            </a>
+        </li>
+        <li>
+            <a href="message.html">
+                <img src="images/wd.png">
+                <p>发现</p>
+            </a>
+        </li>
+    </ul>    
+    <ul class="fenge" style="background-color: #f8c130;">
+        <li class="wenzi">
+            <a href="index.html">购买</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

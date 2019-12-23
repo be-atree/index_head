@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="author" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="MobileOptimized" content="" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>名片编辑</title>
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/base.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/swiper.min.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/style.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/main.css" />
+    <script src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/js/scale.js"></script>
+    <script src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/js/plyr.js"></script>
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/plyr.css">
+</head>
+
+<body style="background-color: #fff;">
+<section class="g-body">
+        <div class="g-body clearfix" style="background-color: #fff;">
+                <div class="mp_main clearfix">
+                    <div class="mp_line2">
+                        <span class="mp_pic" onClick="touxiang()">修改头像</span>
+                        <img src="images/Hf.jpg" class="mp_photo">
+                    </div>
+                </div>
+                <div class="mp_main">
+                    <div class="mp_line">
+                        <div class="mp_tit">名字（必填）</div>
+                        <div class="mp_content"><input type="text" class="mp_txt" placeholder="请输入姓名"></div>
+                    </div>
+                </div>
+                <div class="mp_main">
+                    <div class="mp_line">
+                        <div class="mp_tit">手机号（必填）</div>
+                        <div class="mp_content"><input type="text" class="mp_txt" placeholder="请输入手机号"></div>
+                    </div>
+                </div>
+                <div class="mp_main clearfix">
+                    <div class="mp_line2">
+                        <span class="mp_pic" onClick="touxiang()">添加二维码</span>
+                        <img src="images/Hf.jpg" class="mp_photo1">
+                    </div>
+                </div>
+                <div class="mp_main">
+                    <div class="mp_line">
+                        <div class="mp_tit">微信号（必填）</div>
+                        <div class="mp_content"><input type="text" class="mp_txt" placeholder="请填写微信号"></div>
+                    </div>
+                    
+                </div>
+                <div class="mp_main">
+                        <div class="mp_line">
+                            <div class="mp_tit">代理/职位（必填）</div>
+                            <div class="mp_content"><input type="text" class="mp_txt" placeholder="请输入你的代理身份或职位"></div>
+                        </div>
+                </div>
+                <div class=" clearfix mp_main2">
+                        <div class="mp_line">
+                            <div class="mp_tit">自我介绍（必填）</div>
+                            <div class="mp_content clearfix"><textarea type="text" class="mp_txt2" placeholder="请输入自我介绍"></textarea></div>
+                        </div>
+                </div>
+                <div  class="mp_main">
+                        <div class="mp_line">
+                            <div class="mp_tit">微博</div>
+                            <div class="mp_content"><input type="text"  class="mp_txt" placeholder="请输入您的微博链接"></div>
+                        </div>
+                </div>
+                <div class="mp_main">
+                        <div class="mp_line">
+                            <div class="mp_tit">简书</div>
+                            <div class="mp_content"><input type="text"   class="mp_txt" placeholder="请输入您的简书链接"></div>
+                        </div>
+                </div>
+                <div class="mp_main">
+                        <div class="mp_line">
+                            <div class="mp_tit">抖音</div>
+                            <div style="mp_content"><input type="text"  class="mp_txt" placeholder="请输入您的抖音链接https://" value=""></div>
+                        </div>
+                </div>
+                <div class="mp_main">
+                        <div class="mp_line">
+                            <div class="mp_tit">快手</div>
+                            <div class="mp_content"><input type="text"  class="mp_txt" placeholder="请输入您的快手链接"></div>
+                        </div>
+                </div>
+                
+            
+            
+                <div class="add_submit mt_40"><button class="add_tijiao">确定</button></div>
+            
+            </div>
+
+
+</section>
+<script src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/layui/layui.js"></script>
+<script>
+function touxiang(){
+	layui.use('layer', function(){
+		var layer = layui.layer;
+	  
+		layer.open({
+		  type: 2, 
+		  area: ['90%', '500px'],
+		  anim: 1,
+		  closeBtn: 0,
+		  title: ['图片编辑', 'font-size:28px;'],
+		  content: 'img_test/index.html' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+		}); 
+	
+		});   
+}  
+</script>
+</body>
+</html>

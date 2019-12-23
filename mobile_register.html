@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="author" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="MobileOptimized" content="" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>主页助手-注册</title>
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/base.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/style.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/js/scale.js"></script>
+  </head>
+<body>
+ <!--  加载 -->
+ <div class="load g-body">
+    <div class="loader" title="2">
+        <svg version="1.1" id="loader-1"  x="0px" y="0px" width="100px" height="100px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+			<path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+				<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite" />
+			</path>
+		</svg>
+        <div class="load-msg"> 加载中,请稍后....</div>
+    </div>
+</div>
+<!-- 提示 -->
+  <div class="toast"></div>
+      <div class="g-body reg_main">
+      <div class="reg_title">绑定手机号</div>
+      <div class="reg_describe">为了你的账号安全请绑定手机号</div>
+      <div class="reg_txt">
+           <div class="reg_mob">
+              <input type="text" class="reg_r" placeholder="请输入您的手机号" size="11" onkeyup="value=value.replace(/[^[0-9]+$/g,'')" maxlength="11">
+           </div>
+           <div class="reg_num">
+                <input type="text"class="reg_n" placeholder="请输入您的验证码" maxlength="4" >
+                <div class="weui_cell_ft"><input  type="button" class="weui_btn" value="获取验证码" onclick="clickButton(this)"></div>
+           </div>
+      </div>
+      <button class="reg_tijiao">确定</button>
+    </div>
+    <script type="text/javascript" src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/js/jquery-3.1.0.min.js"></script> 
+    <script type="text/javascript">
+    function clickButton(obj){
+        show_message('重新获取验证码失败');
+        var obj = $(obj);
+        obj.attr("disabled","disabled");/*按钮倒计时*/
+        var time = 60;
+        var set=setInterval(function(){
+        obj.val(--time+"(s)");
+        }, 1000);/*等待时间*/
+        setTimeout(function(){
+        obj.attr("disabled",false).val("重新获取验证码");/*倒计时*/
+        clearInterval(set);
+        }, 60000);
+    }
+    </script>
+    <script type="text/javascript">
+    function show_message(msg){
+        $('.toast').html(msg).show();
+        $('.toast').animate({top:50},500,function(){
+            window.setTimeout("hide_message()",3000);
+        });
+    }
+    function hide_message(){
+        $('.toast').animate({top:-80},300);
+        $('.toast').hide();
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="author" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="MobileOptimized" content="" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>添加视频</title>
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/base.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/swiper.min.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/style.css" />
+    <link rel="stylesheet" href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/main.css" />
+    <script src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/js/scale.js"></script>
+    <link href="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/css/person_w3g.css" rel="stylesheet">
+    <script src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/js/jquery-1.8.3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://zhuye-yingjie-1255409941.cos.ap-beijing.myqcloud.com/js/webuploader/webuploader.js"></script>
+</head>
+<body >
+<section class="g-body clearfix" style="background-color: #fff;">
+    <div class="shipin_main">
+        <div class="shipin_01"><span>视频大小不能超过50M</span>视频</div>
+    </div>
+    <div class="min-height">
+            <div class="audition">
+                <form id="addvform" name="upload_form" action="" method="post">
+                    <input name="video_type" type="hidden" disabled="disabled"/>
+                    <input name="video_key" data-upload="false" type="hidden" disabled="disabled"/>
+                    <div class="clearfix">
+                    <div class="avi_tu"><img src="images/vido.png"></div>
+                    <div class="avi_tu2">
+                    <div id="uploader" class="wu-example file " >                        
+                        <span id="picker">选择视频</span>                        
+                        <!--用来存放文件信息-->
+                        <div id="thelist" class="uploader-list"></div>
+                        <div class="btns">
+                            <i class="icon icon-tubiao-" id="btn_width_cc"></i>
+                        </div>
+                    </div>
+                    <div class="geshi"><span>支持格式：mkv,mp4,avi,rmvb,flv</span></div>
+                </div>
+                </div>
+                    <ul>
+                        <li>
+                            <span id="field_info"></span><i class="icon icon-guanbi1"></i>
+                        </li>
+                        <div class="file_progress">
+                            <div class="file_progress_bar"></div>
+                        </div>
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <div class="add_submit clearfix" ><button class="add_tijiao">确定发布</button></div>  
+</section>
+<script type="text/javascript">
+    var options = {
+        swf:  './js/webuploader/甘露寺 劝千岁杀字休出口_高清.mp4',
+        method:'POST',
+        server: '',
+        pick: '#picker',
+        fileNumLimit:1,
+        fileSizeLimit:40 * 1024 * 1024,
+        fileSingleSizeLimit:40 * 1024 * 1024,
+        threads:1,//同时最大上传进程数，请勿乱动
+        chunked:true,//分片上传，请勿乱动
+        auto:false,//自动上传，请勿乱动
+        chunkRetry:5,//自动重传次数
+        chunkSize:4 * 1024 * 1024,//上传的chunk段大小，不能超过4M(cc规定的 )，默认(2*1024*1024);
+        extensions:'mp3,mkv,mp4,avi,rm,rmvb,flv',//允许上传文件格式
+    };
+    var uploader = WebUploader.create(options);
+    // 当有文件被添加进队列的时候
+    uploader.on( 'fileQueued', function( file ) {
+        var field_name = file.name;
+
+        if(field_name.length >= 10){
+            var file_name_str = field_name.substr(field_name.lastIndexOf("."));
+            field_name = field_name.substring(0,10)+"... "+file_name_str;
+        }
+        uploader.md5File( file).then(function(value){
+            $('#field_info').attr('data-field-id',file.id).html( field_name +
+                    '<p id="file_state" style="float: right;margin-left: 20px;">等待上传...</p>' );
+
+            //请求cc存储 创建第一步、第二步预定座位，拿到第三步所需的请求地址
+            // 地址需在php环境下运行自行修改
+            $.post("http://localhost/sc/upload.php?act=getCcServerVideoId",
+                    {file_name:file.name,file_size:file.size,md5_file_value:value},function(res) {
+                        try {
+                            res = JSON.parse(res);
+                        }catch(e){
+                            return;
+                        }
+                        //alert(res.status)
+                        if(res.status == 1){
+                           // alert(8888888888888)
+                            //设置请求地址，此地址为cc第三步上传chunk块所需的（为第一步返回的地址）
+                            uploader.option('server',res.chunkurl);
+                            console.log(res.chunkurl);
+                            $("input[name='video_type']").val(file.type);
+                            $("input[name='video_key']").val(res.videoid);
+                            setTimeout(function () {
+                                uploader.upload();
+                            }, 500);
+                            return false;
+                        } else {
+                           alert('服务器请求失败，请稍后再试');
+                            return false;
+                        }
+                    });
+        });
+
+        return false;
+    });
+
+    /**
+     * 当某个文件的分块在发送前
+     * blob为每个chunk块
+     * data为fiel文件信息
+     * headers为扩展此对象来控制上传头部所需的报头
+     */
+    uploader.on('uploadBeforeSend',function(blob,data,headers){
+        // 设置cc存储所需要的报头
+        headers = $.extend(headers,{
+            "Content-Range":"bytes "+blob.start+'-'+parseInt(blob.end-1)+'/'+blob.total
+        });
+        //console.log(headers);
+    });
+
+    /**
+     *文件上传过程中创建进度条实时显示。
+     * file为文件的对象信息
+     * percentage为进度
+     *ret每个chunk块上传完成返回的信息（此处为自定义返回参数，webuploader未返回此信息）
+     */
+    uploader.on( 'uploadProgress', function( file, percentage ,ret) {
+        //console.log(ret);
+        $('.file_progress').show().find('.file_progress_bar').css('width', percentage * 100 + '%');
+        $('#file_state').text('上传中...');
+    });
+
+    //成功则派送uploadSuccess事件
+    uploader.on( 'uploadSuccess', function( file ) {
+        $("input[name='video_key']").data('upload',true);
+        alert('上传材料成功');
+        $('#file_state').text('上传完成');
+        return false;
+    });
+
+    //文件上传失败会派送uploadError事件
+    uploader.on( 'uploadError', function( file ) {
+        $("input[name='video_key']").data('upload',false);
+        alert('上传材料失败');
+        $('#file_state').text('上传失败');
+        return false;
+    });
+
+    //不管成功或者失败，在文件上传完后都会触发uploadComplete事件。
+    uploader.on( 'uploadComplete', function( file ) {
+        $( '#'+file.id ).find('.progress').fadeOut();
+    });
+
+    //取消上传
+    $(".audition .icon-guanbi1").click(function(){
+        uploader.stop();
+        uploader.cancelFile( $(this).siblings('span').data('field-id') );
+        uploader.removeFile( $(this).siblings('span').data('field-id') );
+        uploader.getFiles('inited');
+        $('.file_progress').hide().find('.file_progress_bar').css('width','0%');
+        $(this).siblings('span').removeAttr('data-field-id').html('');
+    });
+
+</script>
+</body>
+</html>    
